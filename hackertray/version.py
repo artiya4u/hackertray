@@ -1,8 +1,13 @@
 import requests
 import pkg_resources
 
+
 class Version:
+    def __init__(self):
+        pass
+
     PYPI_URL = "https://pypi.python.org/pypi/hackertray/json"
+
     @staticmethod
     def latest():
         res = requests.get(Version.PYPI_URL).json()
@@ -14,7 +19,7 @@ class Version:
 
     @staticmethod
     def new_available():
-        latest  = Version.latest()
+        latest = Version.latest()
         current = Version.current()
         try:
             if pkg_resources.parse_version(latest) > pkg_resources.parse_version(current):
